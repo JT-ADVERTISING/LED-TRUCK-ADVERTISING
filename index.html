@@ -1,242 +1,557 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JT Advertising - LED Truck Advertising</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>JT Advertising | LED Truck Mobile Billboard</title>
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<style>
     body {
-        margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        background-color: #1c1c1c;
-        color: #f5f5f5;
+      font-family: system-ui, 'Segoe UI', 'Poppins', 'Roboto', sans-serif;
+      background-color: #f5f7fb;    /* gris claro fondo general */
+      color: #1e2a2f;
+      scroll-behavior: smooth;
     }
 
-    header {
-        background: #111;
-        padding: 40px 20px;
-        text-align: center;
-        border-bottom: 3px solid #444;
+    /* paleta: amarillo CAT (#F9C513), gris oscuro (#2C3E2F), gris claro (#EFF3F6), blanco (#FFFFFF) */
+    :root {
+      --yellow-cat: #F9C513;
+      --yellow-dark: #e0b012;
+      --gray-dark: #2C3E2F;
+      --gray-medium: #4a5b4c;
+      --gray-light: #EFF3F6;
+      --white: #FFFFFF;
+      --shadow-sm: 0 12px 28px rgba(0,0,0,0.08);
+      --shadow-md: 0 20px 32px -12px rgba(0,0,0,0.12);
+      --transition: all 0.25s ease-in-out;
     }
 
-    header h1 {
-        font-size: 42px;
-        margin: 0;
-        color: #ffffff;
-    }
-
-    header p {
-        color: #bbb;
-        max-width: 700px;
-        margin: 15px auto 0;
-    }
-
+    /* contenedor principal */
     .container {
-        width: 90%;
-        max-width: 1200px;
-        margin: auto;
-        padding: 40px 0;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ========== HEADER superior + banner ========== */
+    .hero-banner {
+      background: var(--gray-dark);
+      border-radius: 28px;
+      overflow: hidden;
+      margin: 24px 0 32px 0;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s;
+    }
+
+    .hero-banner:hover {
+      transform: scale(1.01);
+    }
+
+    .banner-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      transition: opacity 0.5s ease;
+    }
+
+    /* barra superior con teléfono y branding mínimo */
+    .top-bar {
+      background-color: var(--gray-dark);
+      padding: 12px 0;
+      border-radius: 0 0 24px 24px;
+      color: var(--white);
+    }
+
+    .top-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo span {
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, var(--yellow-cat) 30%, #ffdd77);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .phone-highlight {
+      background: var(--yellow-cat);
+      color: var(--gray-dark);
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: var(--transition);
+    }
+
+    .phone-highlight i {
+      margin-right: 8px;
+    }
+
+    .phone-highlight:hover {
+      background: var(--white);
+      transform: scale(1.02);
+    }
+
+    /* titulos y cards general */
+    h1, h2, h3 {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(125deg, var(--gray-dark), #3e5740);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 8px;
     }
 
     h2 {
-        color: #ffffff;
-        border-left: 5px solid #888;
-        padding-left: 10px;
-        margin-bottom: 20px;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      border-left: 6px solid var(--yellow-cat);
+      padding-left: 18px;
     }
 
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
+    h3 {
+      font-size: 1.3rem;
+      margin: 1rem 0 0.5rem;
+      color: var(--gray-dark);
+    }
+
+    .section {
+      margin: 48px 0;
+    }
+
+    /* tarjetas animadas */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      margin-top: 20px;
     }
 
     .card {
-        background: #2a2a2a;
-        padding: 20px;
-        border-radius: 8px;
-        border: 1px solid #444;
-        transition: 0.3s;
+      background: var(--white);
+      border-radius: 28px;
+      padding: 24px 20px;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,0.03);
     }
 
     .card:hover {
-        transform: translateY(-5px);
-        border-color: #aaa;
+      transform: translateY(-8px);
+      box-shadow: 0 25px 35px -12px rgba(0,0,0,0.2);
+      background: #fefef7;
     }
 
-    .card h3 {
-        margin-top: 0;
-        color: #fff;
+    .icon-yellow {
+      color: var(--yellow-cat);
+      font-size: 2.2rem;
+      margin-bottom: 12px;
     }
 
-    .section-dark {
-        background: #111;
-        padding: 40px 0;
+    .badge {
+      background: var(--yellow-cat);
+      color: var(--gray-dark);
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.8rem;
     }
 
-    .cta {
-        text-align: center;
-        padding: 50px 20px;
-        background: linear-gradient(135deg, #2a2a2a, #111);
-        border-top: 2px solid #444;
+    .stats-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: space-between;
+      background: var(--gray-light);
+      padding: 24px;
+      border-radius: 32px;
+      margin: 24px 0;
     }
 
-    .cta h2 {
-        border: none;
+    .resolution-highlight {
+      font-family: monospace;
+      font-size: 1.3rem;
+      font-weight: 700;
+      background: var(--gray-dark);
+      color: var(--yellow-cat);
+      padding: 6px 15px;
+      border-radius: 60px;
+      display: inline-block;
     }
 
-    .cta .phone {
-        font-size: 42px;
-        font-weight: bold;
-        color: #ffffff;
-        margin-top: 10px;
+    /* lista de localidades */
+    .location-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .location-tag {
+      background: var(--white);
+      border-radius: 60px;
+      padding: 8px 20px;
+      font-weight: 500;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      border-left: 4px solid var(--yellow-cat);
     }
 
-    ul {
-        padding-left: 20px;
+    /* referencias imágenes laterales (galería) */
+    .gallery-ref {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin: 40px 0;
+      justify-content: center;
+    }
+    .ref-img-card {
+      background: var(--white);
+      border-radius: 28px;
+      overflow: hidden;
+      max-width: 320px;
+      transition: 0.3s;
+      box-shadow: var(--shadow-sm);
+    }
+    .ref-img-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s;
+    }
+    .ref-img-card:hover img {
+      transform: scale(1.03);
+    }
+    .ref-caption {
+      padding: 14px;
+      text-align: center;
+      background: var(--white);
+      font-weight: 500;
+      color: var(--gray-dark);
     }
 
+    /* botón contacto */
+    .btn-yellow {
+      background: var(--yellow-cat);
+      color: var(--gray-dark);
+      font-weight: bold;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 60px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-yellow:hover {
+      background: #e5b00c;
+      transform: scale(0.98);
+    }
+
+    /* whatsapp flotante */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 60px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transition: 0.2s;
+      z-index: 999;
+      text-decoration: none;
+      font-family: inherit;
+    }
+    .whatsapp-float i {
+      font-size: 1.7rem;
+    }
+    .whatsapp-float:hover {
+      background-color: #20b859;
+      transform: scale(1.02);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+    }
+
+    /* footer */
     footer {
-        background: #000;
-        text-align: center;
-        padding: 30px 20px;
-        border-top: 2px solid #444;
-        color: #aaa;
+      background: var(--gray-dark);
+      color: #ddd;
+      padding: 40px 0 24px;
+      margin-top: 48px;
+      border-radius: 32px 32px 0 0;
+    }
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .footer-address p {
+      margin: 6px 0;
+    }
+    .copy {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 0.85rem;
+      color: #bbb;
     }
 
-    .highlight {
-        color: #ddd;
-        font-weight: bold;
+    /* animaciones suaves al hacer scroll */
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-once {
+      animation: fadeUp 0.8s ease forwards;
+    }
+    .section {
+      animation: fadeUp 0.8s ease-out;
     }
 
-</style>
+    hr {
+      margin: 32px 0;
+      border: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--yellow-cat), var(--gray-light));
+    }
+
+    @media (max-width: 700px) {
+      .container { padding: 0 16px; }
+      h1 { font-size: 1.8rem; }
+      h2 { font-size: 1.5rem; }
+      .whatsapp-float { padding: 10px 16px; font-size: 0.9rem; }
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
-    <h1>JT Advertising</h1>
-    <p>Movilidad, pantallas LED de alto impacto y segmentación inteligente para llevar tu marca al siguiente nivel.</p>
-</header>
-
-<div class="container">
-
-    <h2>LED Truck Advertising</h2>
-    <div class="grid">
-        <div class="card">
-            <h3>High Impact</h3>
-            <p>Máxima visibilidad para tu marca.</p>
-        </div>
-        <div class="card">
-            <h3>Eco Friendly</h3>
-            <p>Publicidad sostenible con tecnología eléctrica.</p>
-        </div>
-        <div class="card">
-            <h3>Smart Targeting</h3>
-            <p>Llega al lugar correcto en el momento correcto.</p>
-        </div>
-    </div>
-
+<div class="whatsapp-float" onclick="window.open('https://wa.me/15514269765?text=Hola%20JT%20Advertising,%20me%20interesa%20anunciarme%20en%20el%20LED%20Truck','_blank')">
+  <i class="fab fa-whatsapp"></i> <span>¡Contáctanos! 551-426-9765</span>
 </div>
 
-<div class="section-dark">
-    <div class="container">
-        <h2>Características Avanzadas</h2>
-
-        <div class="grid">
-            <div class="card">
-                <h3>Alta Resolución LED</h3>
-                <p>Pantallas en tres lados con visibilidad desde múltiples ángulos.</p>
-            </div>
-
-            <div class="card">
-                <h3>Tecnología Eco</h3>
-                <p>Impulsado por vehículo eléctrico, reduciendo costos operativos.</p>
-            </div>
-
-            <div class="card">
-                <h3>Disponibilidad 24/7</h3>
-                <p>Campañas activas todo el día con programación flexible.</p>
-            </div>
-
-            <div class="card">
-                <h3>Tamaño de Pantallas</h3>
-                <ul>
-                    <li>Laterales: 8.5 x 3.5 pies</li>
-                    <li>Trasera: 6.5 x 3.5 pies</li>
-                    <li>Total: 83 pies²</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h3>GPS y Geo-Targeting</h3>
-                <p>Segmentación precisa con seguimiento en tiempo real.</p>
-            </div>
-
-            <div class="card">
-                <h3>Resolución</h3>
-                <p>1920 x 1080 / 2560 x 1440</p>
-            </div>
-        </div>
-    </div>
+<div class="top-bar">
+  <div class="container top-flex">
+    <div class="logo"><span>JT ADVERTISING</span> <i class="fas fa-truck-moving" style="color: var(--yellow-cat);"></i></div>
+    <div class="phone-highlight"><i class="fas fa-phone-alt"></i> 551-426-9765</div>
+  </div>
 </div>
 
 <div class="container">
-    <h2>Campañas Inteligentes</h2>
-    <p>
-        Llega a tu audiencia ideal mediante geo-fencing, rutas estratégicas y datos en tiempo real.
-        JT Advertising posiciona tu marca en el lugar adecuado, en el momento adecuado.
-    </p>
+  <!-- BANNER principal con imagen proporcionada (Event-Promo) -->
+  <div class="hero-banner">
+    <img class="banner-img" src="/ig/imagen02.jpg" alt="LED Truck Event Promo" loading="eager">
+  </div>
 
-    <div class="grid">
-        <div class="card">
-            <h3>Geo-Fencing</h3>
-            <p>Segmenta zonas específicas.</p>
-        </div>
-        <div class="card">
-            <h3>Smart Routes</h3>
-            <p>Rutas optimizadas de alto tráfico.</p>
-        </div>
-        <div class="card">
-            <h3>Datos en Tiempo Real</h3>
-            <p>Monitorea resultados al instante.</p>
-        </div>
-        <div class="card">
-            <h3>Máximo Impacto</h3>
-            <p>Más impresiones y mejores resultados.</p>
-        </div>
+  <!-- Título principal y eslogan -->
+  <div class="section">
+    <h1>LED TRUCK ADVERTISING</h1>
+    <p style="font-size: 1.2rem; font-weight: 500;">PUBLICIDAD EN MOVIMIENTO</p>
+    <p style="margin: 16px 0 0; font-size: 1.05rem;">JT Advertising combines mobility, high-impact LED displays, and smart targeting to help your brand reach the right audience anywhere.</p>
+  </div>
+
+  <!-- HIGH IMPACT - ECO FRIENDLY - SMART TARGETING cards -->
+  <div class="grid-cards">
+    <div class="card">
+      <div class="icon-yellow"><i class="fas fa-chart-line"></i></div>
+      <h3>HIGH IMPACT</h3>
+      <p>Maximum Visibility — your message dominates streets, events, and crowded zones.</p>
     </div>
-</div>
-
-<div class="section-dark">
-    <div class="container">
-        <h2>Cobertura</h2>
-        <p class="highlight">Hudson County, New Jersey</p>
-        <ul>
-            <li>Jersey City</li>
-            <li>Union City</li>
-            <li>Hoboken</li>
-            <li>North Bergen</li>
-            <li>West New York</li>
-            <li>Secaucus</li>
-            <li>Guttenberg</li>
-            <li>Áreas cercanas</li>
-        </ul>
+    <div class="card">
+      <div class="icon-yellow"><i class="fas fa-leaf"></i></div>
+      <h3>ECO FRIENDLY</h3>
+      <p>Electric & Sustainable — powered by the fully electric Ford F-150 Lightning truck.</p>
     </div>
-</div>
+    <div class="card">
+      <div class="icon-yellow"><i class="fas fa-bullseye"></i></div>
+      <h3>SMART TARGETING</h3>
+      <p>Right Place, Right Time. Precision geo-targeting & GPS tracking.</p>
+    </div>
+  </div>
 
-<div class="cta">
-    <h2>¡Llama Ahora!</h2>
-    <p>Tu marca en movimiento</p>
-    <div class="phone">551-426-9765</div>
+  <!-- DISPLAY RESOLUTION + CUTTING-EDGE -->
+  <div class="section">
+    <h2>DISPLAY RESOLUTION</h2>
+    <div class="stats-flex">
+      <div><span class="resolution-highlight">1920x1080</span> <span style="margin-left: 12px;">Full HD</span></div>
+      <div><span class="resolution-highlight">2560x1440</span> <span style="margin-left: 12px;">QHD</span></div>
+    </div>
+    <p><strong>CUTTING-EDGE</strong> — ensuring crystal-clear visibility from multiple angles.</p>
+  </div>
+
+  <!-- ECO-FRIENDLY TECHNOLOGY + TRUCK -->
+  <div class="card" style="background: var(--gray-light); border: none;">
+    <h2 style="border-left-color: var(--yellow-cat);">ECO-FRIENDLY TECHNOLOGY</h2>
+    <p>Equipped with 2.9 pixel screens on three sides, reducing operational costs. Powered by the fully electric Ford F-150 Lightning TRUCK.</p>
+  </div>
+
+  <!-- AROUND-THE-CLOCK AVAILABILITY -->
+  <div class="section">
+    <h2>AROUND-THE-CLOCK AVAILABILITY</h2>
+    <p>Operates 24/7 with flexible scheduling options to maximize audience engagement.</p>
+  </div>
+
+  <!-- OPTIMAL SCREEN SIZE -->
+  <div class="section">
+    <h2>OPTIMAL SCREEN SIZE</h2>
+    <div class="grid-cards" style="grid-template-columns: repeat(auto-fit, minmax(220px,1fr));">
+      <div class="card"><i class="fas fa-tv icon-yellow"></i> <strong>Side screens:</strong><br> Each 8.5ft x 3.5ft (30 sq.ft.)</div>
+      <div class="card"><i class="fas fa-tachometer-alt icon-yellow"></i> <strong>Rear screen:</strong><br> 6.5ft x 3.5ft (23 sq.ft.)</div>
+      <div class="card"><i class="fas fa-expand-alt icon-yellow"></i> <strong>Total display area:</strong><br> 83 square feet</div>
+    </div>
+  </div>
+
+  <!-- GPS TRACKING & GEO-TARGETING -->
+  <div class="section">
+    <h2>GPS TRACKING & GEO-TARGETING</h2>
+    <p>Ensure your message reaches the right audience in the right locations.</p>
+  </div>
+
+  <!-- LLAMA AHORA! bloque -->
+  <div class="card" style="text-align: center; background: linear-gradient(115deg, var(--gray-dark), #263828); color: white;">
+    <h2 style="color: var(--yellow-cat); border-left: none;">¡LLAMA AHORA! TU MARCA EN MOVIMIENTO</h2>
+    <div style="font-size: 1.8rem; font-weight: bold; margin: 10px 0;"><i class="fas fa-phone-alt"></i> 551-426-9765</div>
+    <p style="font-size: 1.1rem;">ANUNCIATE DONDE IMPORTA — RESULTADOS REALES — MÁXIMA VISIBILIDAD</p>
+  </div>
+
+  <!-- PRECISION TARGETED CAMPAIGNS -->
+  <div class="section">
+    <h2>PRECISION TARGETED CAMPAIGNS</h2>
+    <p>Reach your ideal audience with mobile LED campaigns powered by geo-fencing, GPS tracking, and strategic route planning.</p>
+  </div>
+
+  <!-- COVERING ALL OF HUDSON COUNTY, NEW JERSEY + lista -->
+  <div class="section">
+    <h2>COVERING ALL OF HUDSON COUNTY, NEW JERSEY</h2>
+    <div class="location-grid">
+      <span class="location-tag">West New York</span>
+      <span class="location-tag">Secaucus</span>
+      <span class="location-tag">Union City</span>
+      <span class="location-tag">Jersey City</span>
+      <span class="location-tag">Hoboken</span>
+      <span class="location-tag">North Bergen</span>
+    </div>
+    <p><em>Target specific areas – the right place, at the right time.</em></p>
+  </div>
+
+  <!-- GEO-FENCING / SMART ROUTES / REAL-TIME DATA -->
+  <div class="grid-cards">
+    <div class="card"><i class="fas fa-map-marker-alt icon-yellow"></i> <h3>GEO-FENCING</h3><p>Strategic high-traffic zones, ensuring your brand reaches the most relevant audience.</p></div>
+    <div class="card"><i class="fas fa-route icon-yellow"></i> <h3>SMART ROUTES</h3><p>Track performance, optimize campaigns, and target specific neighborhoods with precision.</p></div>
+    <div class="card"><i class="fas fa-chart-simple icon-yellow"></i> <h3>REAL-TIME DATA</h3><p>More impressions. Better results. Maximum Impact.</p></div>
+  </div>
+
+  <!-- IMÁGENES DE REFERENCIA ADICIONALES (según URL dada) -->
+  <div class="section">
+    <h2>REFERENCIA VISUAL · CAMIONES LED</h2>
+    <div class="gallery-ref">
+      <div class="ref-img-card">
+        <img src="/ig/imagen01.jpg" alt="LED truck advertising sample">
+        <div class="ref-caption">ADVERTISE ON THIS TRUCK <br> STARTING AT JUST $139 <br> <small>CALL LOOKY 154-715-4752 · www.leadlinghk.com</small></div>
+      </div>
+      <!-- segunda imagen de referencia para mantener coherencia visual y mostrar más contenido: la misma u opcional extra? pero está bien con una
+      también se puede agregar otra si quiere doble, pero mantenemos solo la mencionada -->
+      <div class="ref-img-card">
+        <img src="/ig/imagen03.jpg" alt="DJ SOCKWAVES event promo">
+        <div class="ref-caption">SPECIAL PERFORMANCE · DJ SOCKWAVES USA <br> Mobile Billboard Impact</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MENSAJE "MAXIMUM IMPACT" + ECO FRIENDLY EXTRA (todo el contenido literal se respeta) -->
+  <div class="card" style="background: var(--yellow-cat); color: var(--gray-dark); text-align: center;">
+    <p style="font-weight: 800; font-size: 1.3rem;"><i class="fas fa-solar-panel"></i> ECO-FRIENDLY · SUSTAINABLE · ZERO EMISSIONS</p>
+    <p style="margin-top: 8px;">Powered by the fully electric Ford F-150 Lightning truck — lower operational costs, greener campaigns.</p>
+  </div>
+
+  <!-- TEXTO SOBRE SIDE SCREENS / REAR SCREEN repetimos contexto pero se mencionó completo, pero para asegurar agregamos detalle adicional -->
+  <div class="section">
+    <p><strong>Side screens:</strong> Each measures 8.5 feet by 3.5 feet (30 sq.ft.) · <strong>Rear screen:</strong> Measures 6.5 feet by 3.5 feet (23 sq.ft.) · Total display area: 83 square feet</p>
+    <p><i class="fas fa-gps"></i> <strong>GPS Tracking & Geo-targeting</strong> ensure your message reaches the right audience in the right locations.</p>
+  </div>
+
+  <!-- ANUNCIATE DONDE IMPORTA / MÁXIMA VISIBILIDAD ya salió arriba, pero añadimos una nota extra para cubrir el texto completo sin omitir nada -->
+  <div class="badge" style="background: var(--gray-dark); color: white; margin: 16px 0;">PUBLICIDAD EN MOVIMIENTO · MAXIMA VISIBILIDAD</div>
+
+  <!-- TEXTO FINAL "COVERING ALL OF HUDSON COUNTY & Surrounding Areas" -->
+  <div class="card" style="background: #eef2f5;">
+    <p style="font-weight: 600;"><i class="fas fa-map-pin"></i> COVERING ALL OF HUDSON COUNTY & Surrounding Areas · West New York, Secaucus, Union City, Jersey City, Hoboken, North Bergen</p>
+    <p>Geo-fencing, GPS tracking and strategic route planning. More impressions. Better results.</p>
+  </div>
+
+  <!-- TODOS LOS DATOS DE CONTACTO (email, teléfono, direccion) -->
+  <div class="section" style="margin-bottom: 32px;">
+    <div class="stats-flex" style="justify-content: center; background: var(--white);">
+      <div><i class="far fa-envelope" style="color: var(--yellow-cat);"></i> <strong>ADVERTISINGJTG@gmail.com</strong></div>
+      <div><i class="fas fa-phone-alt"></i> <strong>551-426-9765</strong></div>
+      <div><i class="fas fa-map-marker-alt"></i> <strong>3135 Kennedy Blvd, Apt 256, North Bergen, NJ 07047</strong></div>
+    </div>
+  </div>
+
+  <!-- CTA FLOTANTE adicional ? ya tenemos WhatsApp, pero también un botón -->
+  <div style="display: flex; justify-content: center; margin: 20px 0 10px;">
+    <button class="btn-yellow" onclick="window.open('https://wa.me/15514269765?text=Me%20interesa%20el%20LED%20Truck%20advertising','_blank')"><i class="fab fa-whatsapp"></i> ¡Anúnciate ahora!</button>
+  </div>
 </div>
 
 <footer>
-    <p>📧 advertisingjtg@gmail.com</p>
-    <p>📍 3135 Kennedy Blvd, Apt 256, North Bergen, NJ</p>
-    <p>&copy; 2026 JT Advertising</p>
+  <div class="container footer-content">
+    <div class="footer-address">
+      <p><strong>JT Advertising</strong></p>
+      <p>3135 Kennedy Blvd, Apt 256, North Bergen, NJ 07047</p>
+      <p><i class="fas fa-envelope"></i> ADVERTISINGJTG@gmail.com</p>
+      <p><i class="fas fa-phone"></i> 551-426-9765</p>
+    </div>
+    <div>
+      <p><i class="fas fa-truck-fast"></i> LED Truck — Mobile Billboard</p>
+      <p><i class="fas fa-charging-station"></i> 100% Electric Ford F-150 Lightning</p>
+      <p><i class="fas fa-chart-line"></i> Real-time geo-fencing & smart routes</p>
+    </div>
+  </div>
+  <div class="copy container">
+    <hr style="background: #5f6b60; margin: 20px 0;">
+    <p>© JT Advertising — HIGH IMPACT · ECO FRIENDLY · SMART TARGETING. All rights reserved.<br>LED displays on three sides | 83 sq ft total area | 24/7 availability</p>
+  </div>
 </footer>
 
+<!-- pequeña animación extra con scroll reveal sutil (ya hay fadeUp en section, pero referencias visuales) -->
+<style>
+  .section, .card, .gallery-ref .ref-img-card {
+    opacity: 0;
+    animation: fadeUp 0.6s forwards;
+  }
+  .section:nth-child(1) { animation-delay: 0.05s; }
+  .section:nth-child(2) { animation-delay: 0.1s; }
+  .card { animation-delay: 0.08s; }
+  .gallery-ref .ref-img-card:nth-child(1) { animation-delay: 0.1s; }
+  .gallery-ref .ref-img-card:nth-child(2) { animation-delay: 0.2s; }
+  .hero-banner { opacity: 0; animation: fadeUp 0.7s 0s forwards; }
+  .top-bar { animation: fadeUp 0.5s ease forwards; }
+</style>
 </body>
 </html>
