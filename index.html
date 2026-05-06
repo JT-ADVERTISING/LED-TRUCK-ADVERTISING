@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JT Advertising – LED Truck Advertising</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cat-yellow: #FFCD11;
+    --cat-yellow-dark: #E6B800;
+    --cat-yellow-light: #FFE066;
+    --gray-dark: #1A1A1A;
+    --gray-mid: #2E2E2E;
+    --gray: #4A4A4A;
+    --gray-light: #D0D0D0;
+    --gray-lighter: #F0F0F0;
+    --white: #FFFFFF;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--gray-dark); color: var(--white); font-family: 'Barlow', sans-serif; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+    background: rgba(26,26,26,.97); backdrop-filter: blur(12px);
+    border-bottom: 3px solid var(--cat-yellow);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 68px;
+    animation: slideDown .6s ease forwards;
+  }
+  @keyframes slideDown { from { transform:translateY(-100%); opacity:0; } to { transform:translateY(0); opacity:1; } }
+  .nav-logo { font-family:'Bebas Neue',cursive; font-size:2rem; color:var(--cat-yellow); letter-spacing:3px; text-shadow:0 0 20px rgba(255,205,17,.35); }
+  .nav-links { display:flex; gap:32px; list-style:none; }
+  .nav-links a { color:var(--gray-light); text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-size:.95rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; transition:color .25s; }
+  .nav-links a:hover { color:var(--cat-yellow); }
+
+  /* HERO */
+  .hero { position:relative; height:100vh; min-height:620px; display:flex; align-items:center; justify-content:center; overflow:hidden; margin-top:68px; }
+  .hero-bg { position:absolute; inset:0; background:url('https://jt-advertising.github.io/LED-TRUCK-ADVERTISING/ig/imagen03.jpg') center/cover no-repeat; transform:scale(1.08); animation:heroZoom 14s ease-in-out infinite alternate; filter:brightness(.5); }
+  @keyframes heroZoom { from { transform:scale(1.08); } to { transform:scale(1.16); } }
+  .hero-overlay { position:absolute; inset:0; background:linear-gradient(135deg,rgba(26,26,26,.9) 35%,rgba(255,205,17,.06) 100%); }
+  .hero-stripe { position:absolute; bottom:-1px; left:0; width:100%; height:90px; background:var(--cat-yellow); clip-path:polygon(0 65%,100% 0%,100% 100%,0% 100%); }
+  .hero-content { position:relative; z-index:2; text-align:center; padding:0 24px; animation:heroUp 1s ease .3s both; }
+  @keyframes heroUp { from { transform:translateY(50px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+  .hero-eyebrow { font-family:'Barlow Condensed',sans-serif; font-size:.95rem; font-weight:700; color:var(--cat-yellow); letter-spacing:6px; text-transform:uppercase; margin-bottom:14px; }
+  .hero-title { font-family:'Bebas Neue',cursive; font-size:clamp(4.5rem,11vw,10rem); line-height:.92; color:var(--white); text-shadow:5px 5px 0 var(--cat-yellow),10px 10px 0 rgba(0,0,0,.25); margin-bottom:22px; }
+  .hero-title span { color:var(--cat-yellow); }
+  .hero-sub { font-size:1.1rem; font-weight:300; color:var(--gray-light); max-width:580px; margin:0 auto 40px; line-height:1.7; }
+  .hero-cta { display:inline-flex; align-items:center; gap:12px; background:var(--cat-yellow); color:var(--gray-dark); font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; font-weight:900; letter-spacing:2px; text-transform:uppercase; padding:18px 46px; border-radius:2px; text-decoration:none; box-shadow:0 8px 32px rgba(255,205,17,.45); transition:transform .2s,box-shadow .2s; position:relative; overflow:hidden; }
+  .hero-cta::before { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent); transform:translateX(-100%); animation:shimmer 2.5s infinite; }
+  @keyframes shimmer { to { transform:translateX(100%); } }
+  .hero-cta:hover { transform:translateY(-4px); box-shadow:0 16px 44px rgba(255,205,17,.6); }
+
+  /* STRIP */
+  .kf-strip { background:var(--cat-yellow); padding:26px 40px; display:flex; justify-content:center; gap:64px; flex-wrap:wrap; }
+  .kf-item { display:flex; flex-direction:column; align-items:center; gap:5px; animation:fadeUp .7s ease both; }
+  .kf-item:nth-child(1){animation-delay:.1s} .kf-item:nth-child(2){animation-delay:.3s} .kf-item:nth-child(3){animation-delay:.5s}
+  @keyframes fadeUp { from{transform:translateY(20px);opacity:0} to{transform:translateY(0);opacity:1} }
+  .kf-icon { font-size:2rem; }
+  .kf-label { font-family:'Barlow Condensed',sans-serif; font-size:.82rem; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--gray-dark); }
+  .kf-desc { font-size:.78rem; color:var(--gray); font-weight:500; }
+
+  /* SECTIONS */
+  .section-wrap { padding:88px 40px; }
+  .section-label { font-family:'Barlow Condensed',sans-serif; font-size:.78rem; font-weight:700; letter-spacing:5px; text-transform:uppercase; color:var(--cat-yellow); margin-bottom:10px; }
+  .section-title { font-family:'Bebas Neue',cursive; font-size:clamp(2.8rem,6vw,5.5rem); line-height:1; margin-bottom:18px; }
+  .section-title .accent { color:var(--cat-yellow); }
+  .inner { max-width:1240px; margin:0 auto; }
+
+  /* ABOUT GRID */
+  .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+  .about-text p { color:var(--gray-light); font-size:1.04rem; line-height:1.78; margin-bottom:18px; }
+  .res-badge { display:inline-flex; align-items:center; gap:14px; background:var(--gray-dark); border:2px solid var(--cat-yellow); border-radius:3px; padding:14px 24px; margin-top:16px; }
+  .res-badge .res-icon { font-size:1.6rem; }
+  .res-txt { font-family:'Barlow Condensed',sans-serif; font-size:.73rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gray-light); }
+  .res-nums { font-family:'Bebas Neue',cursive; font-size:1.4rem; color:var(--cat-yellow); }
+  .img-frame { border:4px solid var(--cat-yellow); border-radius:3px; overflow:hidden; box-shadow:12px 12px 0 var(--cat-yellow-dark); }
+  .img-frame img { width:100%; display:block; transition:transform .6s; }
+  .img-frame:hover img { transform:scale(1.04); }
+
+  /* FEATURE CARDS */
+  .features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2px; margin-top:50px; border:2px solid var(--cat-yellow); overflow:hidden; border-radius:4px; }
+  .fc { background:var(--gray-mid); padding:36px 28px; border-right:2px solid rgba(255,205,17,.12); border-bottom:2px solid rgba(255,205,17,.12); position:relative; overflow:hidden; transition:background .3s,transform .3s; }
+  .fc::before { content:''; position:absolute; top:0; left:0; width:4px; height:0; background:var(--cat-yellow); transition:height .4s ease; }
+  .fc:hover::before { height:100%; }
+  .fc:hover { background:#252525; transform:translateX(5px); }
+  .fc-icon { width:50px; height:50px; background:var(--cat-yellow); border-radius:2px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin-bottom:16px; }
+  .fc h3 { font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; font-weight:900; letter-spacing:1px; text-transform:uppercase; color:var(--cat-yellow); margin-bottom:10px; }
+  .fc p { color:var(--gray-light); font-size:.9rem; line-height:1.65; }
+  .fc ul { list-style:none; margin-top:8px; }
+  .fc ul li { color:var(--gray-light); font-size:.88rem; padding:4px 0; display:flex; align-items:center; gap:8px; }
+  .fc ul li::before { content:'▸'; color:var(--cat-yellow); font-size:.7rem; flex-shrink:0; }
+  .fc-wide { grid-column:span 2; }
+
+  /* CTA BAND */
+  .cta-band { background:var(--cat-yellow); padding:76px 40px; text-align:center; position:relative; overflow:hidden; }
+  .cta-band::before { content:'551-426-9765'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:'Bebas Neue',cursive; font-size:16vw; color:rgba(0,0,0,.05); white-space:nowrap; pointer-events:none; }
+  .cta-band h2 { font-family:'Bebas Neue',cursive; font-size:clamp(2rem,4vw,3.5rem); color:var(--gray-dark); margin-bottom:6px; }
+  .cta-band .sub { font-size:1rem; color:var(--gray); margin-bottom:28px; font-weight:500; }
+  .cta-number { display:block; font-family:'Bebas Neue',cursive; font-size:clamp(3.5rem,9vw,8rem); color:var(--gray-dark); letter-spacing:4px; text-decoration:none; animation:numPulse 2.5s ease-in-out infinite; }
+  @keyframes numPulse { 0%,100%{text-shadow:4px 4px 0 rgba(255,255,255,.3)} 50%{text-shadow:4px 4px 0 rgba(255,255,255,.3),0 0 50px rgba(26,26,26,.25)} }
+  .cta-sub { font-family:'Barlow Condensed',sans-serif; font-size:1.25rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--gray-dark); margin-top:8px; }
+
+  /* CAMPAIGNS */
+  .camp-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; margin-top:48px; align-items:start; }
+  .camp-text p { color:var(--gray-light); font-size:1rem; line-height:1.76; margin-bottom:14px; }
+  .camp-text .hl { color:var(--cat-yellow); font-weight:600; }
+  .pillars { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:28px; }
+  .pillar { background:var(--gray-dark); border:1px solid rgba(255,205,17,.18); border-radius:3px; padding:20px 18px; transition:border-color .3s,transform .3s; }
+  .pillar:hover { border-color:var(--cat-yellow); transform:translateY(-5px); }
+  .p-icon { font-size:1.5rem; margin-bottom:7px; }
+  .pillar h4 { font-family:'Barlow Condensed',sans-serif; font-size:.88rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--cat-yellow); margin-bottom:5px; }
+  .pillar p { font-size:.8rem; color:var(--gray-light); }
+
+  /* COVERAGE */
+  .cov-inner { display:grid; grid-template-columns:1fr 1fr; gap:64px; margin-top:48px; align-items:center; }
+  .cov-badge { display:inline-block; background:var(--cat-yellow); color:var(--gray-dark); font-family:'Bebas Neue',cursive; font-size:1.75rem; letter-spacing:2px; padding:8px 20px; border-radius:2px; margin-bottom:18px; }
+  .cities { list-style:none; }
+  .cities li { display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid rgba(255,205,17,.09); font-family:'Barlow Condensed',sans-serif; font-size:1.08rem; font-weight:600; letter-spacing:1px; color:var(--gray-light); transition:color .2s,padding-left .2s; cursor:default; }
+  .cities li:hover { color:var(--cat-yellow); padding-left:8px; }
+  .cities li::before { content:'✓'; color:var(--cat-yellow); font-size:.88rem; font-weight:700; }
+
+  /* FOOTER */
+  footer { background:#0F0F0F; border-top:4px solid var(--cat-yellow); padding:64px 40px; text-align:center; }
+  .footer-logo { font-family:'Bebas Neue',cursive; font-size:3.2rem; color:var(--cat-yellow); letter-spacing:5px; margin-bottom:32px; text-shadow:0 0 30px rgba(255,205,17,.28); }
+  .contact-row { display:flex; justify-content:center; flex-wrap:wrap; gap:44px; margin-bottom:32px; }
+  .ci { display:flex; align-items:center; gap:10px; font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:600; letter-spacing:1px; color:var(--gray-light); }
+  .ci-icon { font-size:1.3rem; color:var(--cat-yellow); }
+  .ci a { color:var(--cat-yellow); text-decoration:none; font-family:'Bebas Neue',cursive; font-size:1.5rem; letter-spacing:2px; }
+  .footer-copy { font-size:.78rem; color:var(--gray); border-top:1px solid rgba(255,205,17,.1); padding-top:20px; margin-top:20px; }
+
+  /* WHATSAPP */
+  .wa-btn { position:fixed; bottom:30px; right:30px; z-index:9999; width:62px; height:62px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 26px rgba(37,211,102,.5); text-decoration:none; animation:waBounce 2.5s ease-in-out infinite; transition:transform .2s; }
+  .wa-btn:hover { transform:scale(1.13); }
+  @keyframes waBounce { 0%,100%{box-shadow:0 6px 26px rgba(37,211,102,.5)} 50%{box-shadow:0 12px 40px rgba(37,211,102,.75)} }
+  .wa-btn svg { width:34px; height:34px; fill:#fff; }
+  .wa-tip { position:absolute; right:72px; top:50%; transform:translateY(-50%); background:var(--gray-dark); color:var(--white); font-family:'Barlow Condensed',sans-serif; font-size:.82rem; font-weight:600; letter-spacing:1px; white-space:nowrap; padding:8px 14px; border-radius:3px; border:1px solid rgba(255,205,17,.3); opacity:0; pointer-events:none; transition:opacity .3s; }
+  .wa-btn:hover .wa-tip { opacity:1; }
+
+  /* REVEAL */
+  .reveal { opacity:0; transform:translateY(40px); transition:opacity .75s ease,transform .75s ease; }
+  .reveal.visible { opacity:1; transform:none; }
+
+  /* RESPONSIVE */
+  @media(max-width:900px){
+    .about-grid,.camp-grid,.cov-inner{grid-template-columns:1fr;}
+    nav{padding:0 20px;} .nav-links{display:none;}
+    .section-wrap{padding:60px 22px;}
+    .kf-strip{gap:28px;padding:20px 16px;}
+    .fc-wide{grid-column:span 1;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">JT Advertising</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#campaigns">Campaigns</a></li>
+    <li><a href="#coverage">Coverage</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">JT Advertising presents</p>
+    <h1 class="hero-title">LED TRUCK<br><span>ADVERTISING</span></h1>
+    <p class="hero-sub">Combining mobility, high-impact LED displays, and smart targeting to help your brand reach the right audience anywhere.</p>
+    <a href="tel:5514269765" class="hero-cta">📞 &nbsp;Call Now: 551-426-9765</a>
+  </div>
+  <div class="hero-stripe"></div>
+</section>
+
+<!-- KEY FEATURES STRIP -->
+<div class="kf-strip">
+  <div class="kf-item"><span class="kf-icon">🎯</span><span class="kf-label">High Impact</span><span class="kf-desc">Maximum Visibility</span></div>
+  <div class="kf-item"><span class="kf-icon">🌿</span><span class="kf-label">Eco Friendly</span><span class="kf-desc">Electric &amp; Sustainable</span></div>
+  <div class="kf-item"><span class="kf-icon">📍</span><span class="kf-label">Smart Targeting</span><span class="kf-desc">Right Place, Right Time.</span></div>
+</div>
+
+<!-- ABOUT -->
+<div class="section-wrap" id="about" style="background:var(--gray-mid);">
+  <div class="inner">
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p class="section-label">Who We Are</p>
+        <h2 class="section-title">YOUR BRAND<br><span class="accent">IN MOTION</span></h2>
+        <p>JT Advertising combines mobility, high-impact LED displays, and smart targeting to help your brand reach the right audience anywhere. We bring your message directly to the streets — where your customers live, work, and move.</p>
+        <div class="res-badge">
+          <span class="res-icon">🖥️</span>
+          <div>
+            <div class="res-txt">Display Resolution</div>
+            <div class="res-nums">1920×1080 &nbsp;•&nbsp; 2560×1440</div>
+          </div>
+        </div>
+      </div>
+      <div class="img-frame">
+        <img src="https://jt-advertising.github.io/LED-TRUCK-ADVERTISING/ig/imagen03.jpg" alt="JT Advertising LED Truck" loading="lazy">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="section-wrap" id="features" style="background:var(--gray-dark);">
+  <div class="inner reveal">
+    <p class="section-label">Cutting-Edge Features</p>
+    <h2 class="section-title">BUILT TO<br><span class="accent">DOMINATE</span></h2>
+    <div class="features-grid">
+      <div class="fc">
+        <div class="fc-icon">📺</div>
+        <h3>High-Resolution LED Display</h3>
+        <p>Equipped with 2.9 pixel screens on three sides, ensuring crystal-clear visibility from multiple angles.</p>
+      </div>
+      <div class="fc">
+        <div class="fc-icon">🌿</div>
+        <h3>Eco-Friendly Technology</h3>
+        <p>Powered by the fully electric Ford F-150 Lightning truck, promoting sustainability while reducing operational costs.</p>
+      </div>
+      <div class="fc">
+        <div class="fc-icon">🕐</div>
+        <h3>Around-The-Clock Availability</h3>
+        <p>Operates 24/7 with flexible scheduling options to maximize audience engagement at any hour.</p>
+      </div>
+      <div class="fc">
+        <div class="fc-icon">📐</div>
+        <h3>Optimal Screen Size</h3>
+        <ul>
+          <li>Side screens: 8.5 ft × 3.5 ft (30 sq. ft.) each</li>
+          <li>Rear screen: 6.5 ft × 3.5 ft (23 sq. ft.)</li>
+          <li>Total display area: 83 square feet</li>
+        </ul>
+      </div>
+      <div class="fc fc-wide">
+        <div class="fc-icon">📡</div>
+        <h3>GPS Tracking &amp; Geo-Targeting</h3>
+        <p>Real-time GPS tracking and geo-fencing technology ensure your message reaches the right audience in the right locations — every single time.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band reveal">
+  <h2>¡LLAMA AHORA! — TU MARCA EN MOVIMIENTO</h2>
+  <p class="sub">MÁXIMA VISIBILIDAD. RESULTADOS REALES. — Anúnciate donde importa.</p>
+  <a href="tel:5514269765" class="cta-number">551-426-9765</a>
+  <p class="cta-sub">Call us today to get started</p>
+</div>
+
+<!-- CAMPAIGNS -->
+<div class="section-wrap" id="campaigns" style="background:var(--gray-mid);">
+  <div class="inner reveal">
+    <p class="section-label">Precision Targeted Campaigns</p>
+    <h2 class="section-title">REACH THE<br><span class="accent">RIGHT PEOPLE</span></h2>
+    <div class="camp-grid">
+      <div class="camp-text">
+        <p>Reach your ideal audience with mobile LED campaigns powered by geo-fencing, GPS tracking, and strategic route planning.</p>
+        <p>JT Advertising helps your brand appear in <span class="hl">the right place</span>, at <span class="hl">the right time</span>.</p>
+        <div class="pillars">
+          <div class="pillar"><div class="p-icon">📍</div><h4>Geo-Fencing</h4><p>Target specific areas with pinpoint accuracy.</p></div>
+          <div class="pillar"><div class="p-icon">🗺️</div><h4>Smart Routes</h4><p>Strategic high-traffic coverage where it counts.</p></div>
+          <div class="pillar"><div class="p-icon">📊</div><h4>Real-Time Data</h4><p>Track performance instantly as campaigns run.</p></div>
+          <div class="pillar"><div class="p-icon">🚀</div><h4>Maximum Impact</h4><p>More impressions. Better results. Period.</p></div>
+        </div>
+      </div>
+      <div class="img-frame">
+        <img src="https://jt-advertising.github.io/LED-TRUCK-ADVERTISING/ig/imagen01.jpg" alt="Campaign Reference" loading="lazy">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COVERAGE -->
+<div class="section-wrap" id="coverage" style="background:var(--gray-dark);">
+  <div class="inner reveal">
+    <p class="section-label">Service Area</p>
+    <h2 class="section-title">COVERING ALL OF<br><span class="accent">HUDSON COUNTY</span></h2>
+    <p style="color:var(--gray-light);margin-bottom:10px;">New Jersey</p>
+    <div class="cov-inner">
+      <div class="img-frame">
+        <img src="https://jt-advertising.github.io/LED-TRUCK-ADVERTISING/ig/imagen01.jpg" alt="Coverage Area" loading="lazy">
+      </div>
+      <div>
+        <div class="cov-badge">Hudson County, NJ</div>
+        <ul class="cities">
+          <li>Jersey City</li>
+          <li>Union City</li>
+          <li>Hoboken</li>
+          <li>North Bergen</li>
+          <li>West New York</li>
+          <li>Secaucus</li>
+          <li>Guttenberg</li>
+          <li>&amp; Surrounding Areas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-logo">JT ADVERTISING</div>
+  <div class="contact-row">
+    <div class="ci"><span class="ci-icon">✉️</span><span>ADVERTISINGJTG@gmail.com</span></div>
+    <div class="ci"><span class="ci-icon">📞</span><a href="tel:5514269765">551-426-9765</a></div>
+    <div class="ci"><span class="ci-icon">📍</span><span>3135 Kennedy Blvd, Apt 256, North Bergen, NJ 07047</span></div>
+  </div>
+  <p class="footer-copy">© 2025 JT Advertising. All rights reserved. LED Truck Advertising — Hudson County, NJ.</p>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/15514269765?text=Me%20interesa%20el%20LED%20Truck%20advertising" target="_blank" class="wa-btn" aria-label="Chat on WhatsApp">
+  <span class="wa-tip">Chat on WhatsApp</span>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
